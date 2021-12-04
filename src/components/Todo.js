@@ -11,6 +11,7 @@ function Task({ task }) {
     </div>
   );
 }
+
 function Todo() {
   const [tasks, setTasks] = useState([
     {
@@ -40,4 +41,25 @@ function Todo() {
 
 export default Todo;
 
+function CreateTask({ addTask }) {
+  const [value, setValue] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!value) return;
+    addTask(value);
+    setValue('');
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="input"
+        value={value}
+        placeholder="Add new task.."
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </form>
+  );
+}
+export default CreateTask;
