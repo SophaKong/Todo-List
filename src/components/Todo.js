@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Todo.css';
 
-function Task({ task, index, completeTask, removeTask }) {
+function Task({ task, index, completeTask, removeTask, onEdit }) {
   return (
     <div
       className="task"
@@ -12,30 +12,46 @@ function Task({ task, index, completeTask, removeTask }) {
         Remove
       </button>
       <button onClick={() => completeTask(index)}>Complete</button>
-      <button style={{ background: 'green' }}>Edit</button>
+      <button onClick={() => onEdit(task)} style={{ background: 'green' }}>
+        Edit
+      </button>
     </div>
   );
 }
 
 function Todo() {
+  const [selectTodo, setSelectTodo] = useState();
+  const [value, setValue] = useState('');
   const [tasks, setTasks] = useState([
     {
+      id: 1,
       title: 'Grab some Pizza',
       completed: true,
     },
     {
+      id: 2,
       title: 'Do your workout',
       completed: true,
     },
+
     {
+      id: 3,
       title: 'Hangout with friends',
       completed: false,
     },
   ]);
 
   const addTask = (title) => {
-    const newTasks = [...tasks, { title, completed: false }];
-    setTasks(newTasks);
+    if (selectTodo) {
+      tasks.filter((todo) => {
+        if (todo.id === selectTodo.id) {
+          todo.title = title;
+          setTasks([...tasks]);
+        }
+      });
+    } else {
+      dubplicate(title);
+    }
   };
 
   const completeTask = (index) => {
@@ -46,12 +62,29 @@ function Todo() {
 
   const removeTask = (index) => {
     const newTasks = [...tasks];
-    console.log('hhh', newTasks.length);
-    console.log('tasks', tasks.length);
-    if (tasks.length > 1) {
+    if (newTasks.length > 1) {
       newTasks.splice(index, 1);
       setTasks(newTasks);
     }
+  };
+
+  const dubplicate = (title) => {
+    const result = tasks.find((item) => item.title === title);
+    if (!result) {
+      const newTasks = [
+        ...tasks,
+        { title, completed: false, id: Math.random() },
+      ];
+      setTasks(newTasks);
+    } else {
+      alert('Item is already exist!');
+    }
+  };
+
+  const onEdit = (task) => {
+    setValue(task.title);
+    setSelectTodo(task);
+    // const task = newTasks.find((item) => item.index === index);
   };
 
   return (
@@ -63,13 +96,19 @@ function Todo() {
             key={index}
             task={task}
             index={index}
+            onEdit={onEdit}
             completeTask={completeTask}
             removeTask={removeTask}
           />
         ))}
       </div>
       <div className="create-task">
-        <CreateTask addTask={addTask} />
+        <CreateTask
+          addTask={addTask}
+          value={value}
+          setValue={setValue}
+          setSelectTodo={setSelectTodo}
+        />
       </div>
     </div>
   );
@@ -77,13 +116,12 @@ function Todo() {
 
 export default Todo;
 
-function CreateTask({ addTask }) {
-  const [value, setValue] = useState('');
-
+function CreateTask({ addTask, value, setValue, setSelectTodo }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!value) return;
     addTask(value);
+    setSelectTodo('');
     setValue('');
   };
   return (
