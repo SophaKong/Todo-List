@@ -1,7 +1,6 @@
 body {
   background: #f5f6f7;
 }
-
 .todo-container {
   background: #ee9ecb;
   width: 60vw;
@@ -12,14 +11,12 @@ body {
   font-size: 20px;
   border: 3px solid rgb(36, 110, 194);
 }
-
 .task {
   border: 1px solid white;
   border-radius: 5px;
   padding: 0.5em;
   margin: 0.5em;
 }
-
 .task button {
   background: rgb(25, 109, 204);
   transform: translateY(-20px);
@@ -31,7 +28,6 @@ body {
   color: white;
   float: right;
 }
-
 .header {
   margin: 0.5em;
   font-size: 2em;
@@ -45,7 +41,6 @@ body {
   border: none;
   padding: 0.7em;
 }
-
 .hide-button {
   display: none;
 }
