@@ -37,7 +37,7 @@ function Todo() {
   const completeTask = (index) => {
     const newTasks = [...tasks];
     newTasks[index].completed = true;
-    setTask(newTasks);
+    setTasks(newTasks);
   };
 
   return (
