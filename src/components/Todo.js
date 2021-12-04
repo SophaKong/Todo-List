@@ -12,12 +12,12 @@ function Task({ task, index, completeTask, removeTask }) {
         Remove
       </button>
       <button onClick={() => completeTask(index)}>Complete</button>
+      <button style={{background: 'green'}}>Edit</button>
     </div>
   );
 }
 
 function Todo() {
-  const [tasksRemaining, setTasksRemaining] = useState(0);
   const [tasks, setTasks] = useState([
     {
       title: 'Grab some Pizza',
