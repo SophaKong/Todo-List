@@ -17,6 +17,7 @@ function Task({ task, index, completeTask, removeTask }) {
 }
 
 function Todo() {
+  const [tasksRemaining, setTasksRemaining] = useState(0);
   const [tasks, setTasks] = useState([
     {
       title: 'Grab some Pizza',
