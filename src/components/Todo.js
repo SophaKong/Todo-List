@@ -4,18 +4,21 @@ import './Todo.css';
 function Task({ task, index, completeTask, removeTask, onEdit }) {
   return (
     <div
-      className="task"
+      className="task mydivouter"
       style={{ textDecoration: task.completed ? 'line-through' : '' }}
     >
       {task.title}
+    <div className="mybuttonoverlap">
+      <button onClick={() => completeTask(index)}>Complete</button>
       <button style={{ background: 'red' }} onClick={() => removeTask(index)}>
         Remove
       </button>
-      <button onClick={() => completeTask(index)}>Complete</button>
       <button onClick={() => onEdit(task)} style={{ background: 'green' }}>
         Edit
       </button>
+      </div>
     </div>
+  
   );
 }
 
@@ -25,18 +28,18 @@ function Todo() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Grab some Pizza',
+      title: 'Discuss ',
       completed: true,
     },
     {
       id: 2,
-      title: 'Do your workout',
+      title: 'Requirment',
       completed: true,
     },
 
     {
       id: 3,
-      title: 'Hangout with friends',
+      title: 'Design UI',
       completed: false,
     },
   ]);
@@ -77,19 +80,18 @@ function Todo() {
       ];
       setTasks(newTasks);
     } else {
-      alert('Item is already exist!');
+      alert('Task is already exist!');
     }
   };
 
   const onEdit = (task) => {
     setValue(task.title);
     setSelectTodo(task);
-    // const task = newTasks.find((item) => item.index === index);
   };
 
   return (
     <div className="todo-container">
-      <div className="header">TODO - ITEMS</div>
+      <div className="header">TODO - LIST</div>
       <div className="tasks">
         {tasks.map((task, index) => (
           <Task
