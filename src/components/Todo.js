@@ -35,7 +35,7 @@ function Todo() {
   };
 
   const completeTask = (index) => {
-    const newsTask = [...tasks];
+    const newTasks = [...tasks];
     newTasks[index].completed = true;
     setTask(newTasks);
   };
