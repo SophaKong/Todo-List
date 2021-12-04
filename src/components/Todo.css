@@ -1,9 +1,9 @@
 body {
-  background: rgb(255, 173, 65);
+  background: #f5f6f7;
 }
 
 .todo-container {
-  background: rgb(41, 33, 33);
+  background: rgb(228, 126, 177);
   width: 40vw;
   margin: 10em auto;
   border-radius: 15px;
@@ -20,7 +20,7 @@ body {
 }
 
 .task button {
-  background: rgb(12, 124, 251);
+  background: rgb(25, 109, 204);
   border-radius: 5px;
   margin: 0px 5px;
   padding: 3px 5px;
