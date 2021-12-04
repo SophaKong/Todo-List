@@ -12,7 +12,7 @@ function Task({ task, index, completeTask, removeTask }) {
         Remove
       </button>
       <button onClick={() => completeTask(index)}>Complete</button>
-      <button style={{background: 'green'}}>Edit</button>
+      <button style={{ background: 'green' }}>Edit</button>
     </div>
   );
 }
@@ -46,8 +46,12 @@ function Todo() {
 
   const removeTask = (index) => {
     const newTasks = [...tasks];
-    newTasks.splice(index, 1);
-    setTasks(newTasks);
+    console.log('hhh', newTasks.length);
+    console.log('tasks', tasks.length);
+    if (tasks.length > 1) {
+      newTasks.splice(index, 1);
+      setTasks(newTasks);
+    }
   };
 
   return (
