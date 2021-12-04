@@ -3,12 +3,13 @@ body {
 }
 
 .todo-container {
-  background: rgb(228, 126, 177);
-  width: 50vw;
-  margin: 10em auto;
+  background: #ee9ecb;
+  width: 60vw;
+  margin: 5em auto;
   border-radius: 15px;
   padding: 40px 10px;
-  color: white;
+  color: #0970b4;
+  font-size: 20px;
   border: 3px solid rgb(36, 110, 194);
 }
 
@@ -21,6 +22,7 @@ body {
 
 .task button {
   background: rgb(25, 109, 204);
+  transform: translateY(-20px);
   border-radius: 5px;
   margin: 0px 5px;
   padding: 3px 5px;
@@ -38,6 +40,7 @@ body {
 .create-task input[type='text'] {
   margin: 2.5em 2em;
   width: 80%;
+  border-radius: 8px;
   outline: none;
   border: none;
   padding: 0.7em;
@@ -46,21 +49,9 @@ body {
 .hide-button {
   display: none;
 }
-.mydivouter {
-  position: relative;
-  margin: 0 auto;
-}
-.mydivoverlap {
-  position: relative;
-  z-index: 1;
-}
-.mybuttonoverlap {
-  position: absolute;
-  z-index: 2;
-  top: 44px;
+.btn-hover {
   display: none;
-  right: 3px;
 }
-.mydivouter:hover .mybuttonoverlap {
+.wrapper:hover .btn-hover {
   display: block;
 }

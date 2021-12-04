@@ -4,21 +4,20 @@ import './Todo.css';
 function Task({ task, index, completeTask, removeTask, onEdit }) {
   return (
     <div
-      className="task mydivouter"
+      className="task wrapper"
       style={{ textDecoration: task.completed ? 'line-through' : '' }}
     >
       {task.title}
-    <div className="mybuttonoverlap">
-      <button onClick={() => completeTask(index)}>Complete</button>
-      <button style={{ background: 'red' }} onClick={() => removeTask(index)}>
-        Remove
-      </button>
-      <button onClick={() => onEdit(task)} style={{ background: 'green' }}>
-        Edit
-      </button>
+      <div className="btn-hover">
+        <button onClick={() => completeTask(index)}>Complete</button>
+        <button style={{ background: 'red' }} onClick={() => removeTask(index)}>
+          Remove
+        </button>
+        <button onClick={() => onEdit(task)} style={{ background: 'green' }}>
+          Edit
+        </button>
       </div>
     </div>
-  
   );
 }
 
@@ -28,22 +27,21 @@ function Todo() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Discuss ',
+      title: 'Meeting',
       completed: true,
     },
     {
       id: 2,
-      title: 'Requirment',
+      title: 'Set Plan',
       completed: true,
     },
-
     {
       id: 3,
-      title: 'Design UI',
+      title: 'Start Action',
       completed: false,
     },
   ]);
-
+  // Add Task
   const addTask = (title) => {
     if (selectTodo) {
       tasks.filter((todo) => {
@@ -56,13 +54,13 @@ function Todo() {
       dubplicate(title);
     }
   };
-
+  // Complete Task
   const completeTask = (index) => {
     const newTasks = [...tasks];
     newTasks[index].completed = true;
     setTasks(newTasks);
   };
-
+  // Remove Task
   const removeTask = (index) => {
     const newTasks = [...tasks];
     if (newTasks.length > 1) {
@@ -70,7 +68,12 @@ function Todo() {
       setTasks(newTasks);
     }
   };
-
+  // Edit Task
+  const onEdit = (task) => {
+    setValue(task.title);
+    setSelectTodo(task);
+  };
+  // Dubplicate
   const dubplicate = (title) => {
     const result = tasks.find((item) => item.title === title);
     if (!result) {
@@ -83,15 +86,17 @@ function Todo() {
       alert('Task is already exist!');
     }
   };
-
-  const onEdit = (task) => {
-    setValue(task.title);
-    setSelectTodo(task);
-  };
-
   return (
     <div className="todo-container">
       <div className="header">TODO - LIST</div>
+      <div className="create-task">
+        <CreateTask
+          addTask={addTask}
+          value={value}
+          setValue={setValue}
+          setSelectTodo={setSelectTodo}
+        />
+      </div>
       <div className="tasks">
         {tasks.map((task, index) => (
           <Task
@@ -103,14 +108,6 @@ function Todo() {
             removeTask={removeTask}
           />
         ))}
-      </div>
-      <div className="create-task">
-        <CreateTask
-          addTask={addTask}
-          value={value}
-          setValue={setValue}
-          setSelectTodo={setSelectTodo}
-        />
       </div>
     </div>
   );
